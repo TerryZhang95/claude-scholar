@@ -77,6 +77,7 @@ UNSAFE_OPERATIONS = "all"
 NO_PROXY = "localhost,127.0.0.1"
 ```
 
+
 ##### OpenCode
 
 Add to your `~/.opencode/opencode.jsonc`:
