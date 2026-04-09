@@ -8,10 +8,11 @@ This command invokes the **planner** agent to create a comprehensive implementat
 
 ## What This Command Does
 
-1. **Restate Requirements** - Clarify what needs to be built
-2. **Identify Risks** - Surface potential issues and blockers
-3. **Create Step Plan** - Break down implementation into phases
-4. **Wait for Confirmation** - MUST receive user approval before proceeding
+1. **Identify Submission Target** - Extract or ask for target venue (journal/conference)
+2. **Restate Requirements** - Clarify what needs to be built
+3. **Identify Risks** - Surface potential issues and blockers
+4. **Create Step Plan** - Break down implementation into phases
+5. **Wait for Confirmation** - MUST receive user approval before proceeding
 
 ## When to Use
 
@@ -26,12 +27,34 @@ Use `/plan` when:
 
 The planner agent will:
 
-1. **Analyze the request** and restate requirements in clear terms
-2. **Break down into phases** with specific, actionable steps
-3. **Identify dependencies** between components
-4. **Assess risks** and potential blockers
-5. **Estimate complexity** (High/Medium/Low)
-6. **Present the plan** and WAIT for your explicit confirmation
+1. **Detect submission target** from the prompt (e.g., "for TWC", "submit to ICLR", "IEEE Globecom paper"). If none is found, ask the user before proceeding.
+2. **Analyze the request** and restate requirements in clear terms
+3. **Break down into phases** with specific, actionable steps
+4. **Identify dependencies** between components
+5. **Assess risks** and potential blockers
+6. **Estimate complexity** (High/Medium/Low)
+7. **Present the plan** and WAIT for your explicit confirmation
+
+## Submission Target Block
+
+Every plan file **must** begin with a `## Submission Target` block. Populate it from the user's prompt; if any field is ambiguous, ask.
+
+```markdown
+## Submission Target
+- **Venue**: IEEE TWC          # or Globecom / ICLR / NeurIPS / Nature / etc.
+- **Type**: Journal            # Journal | Conference | Workshop
+- **Deadline**: YYYY-MM-DD     # fill if mentioned, else leave TBD
+```
+
+Venue style rules applied automatically based on this block (from CLAUDE.md "Venue-Adaptive Writing"):
+
+| Venue | Format |
+|---|---|
+| IEEE TWC / JSAC | Double-column, 14–15 pp, formal/equation-heavy |
+| IEEE ICC / Globecom | Double-column, 5–6 pp, concise/result-driven |
+| NeurIPS / ICML / ICLR | Single-column, 8–9 pp, narrative/insight-driven |
+| KDD | 9 pp, applied/empirical |
+| Nature / Science | 3000–5000 words, broad-audience story |
 
 ## Example Usage
 
