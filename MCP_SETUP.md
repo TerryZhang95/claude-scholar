@@ -8,22 +8,24 @@ Claude Scholar relies on MCP (Model Context Protocol) servers for extended capab
 
 **Used by**: `literature-reviewer` agent, `/research-init`, `/zotero-review`, `/zotero-notes` commands
 
-**Package**: [Galaxy-Dawn/zotero-mcp](https://github.com/Galaxy-Dawn/zotero-mcp) — Web API mode, supports remote access without Zotero desktop app.
+**Package**: [Galaxy-Dawn/zotero-mcp](https://github.com/Galaxy-Dawn/zotero-mcp) — auto-detects local Zotero desktop vs Web API mode; Web credentials are only required for remote access or write tools.
 
 #### Features
 
 | Category | Tools |
 |----------|-------|
-| **Import** | `zotero_add_items_by_doi`, `zotero_add_items_by_arxiv`, `zotero_add_item_by_url` |
+| **Import** | `zotero_add_items_by_identifier`, `zotero_add_items_by_doi`, `zotero_add_items_by_arxiv`, `zotero_add_item_by_url` |
 | **Read** | `zotero_get_collections`, `zotero_get_collection_items`, `zotero_search_items`, `zotero_semantic_search` |
-| **Update** | `zotero_update_item`, `zotero_update_note`, `zotero_create_collection`, `zotero_move_items_to_collection` |
+| **Update** | `zotero_update_item`, `zotero_update_note`, `zotero_create_collection`, `zotero_move_items_to_collection`, `zotero_reconcile_collection_duplicates` |
 | **Delete** | `zotero_delete_items` (to trash), `zotero_delete_collection` |
-| **PDF** | `zotero_find_and_attach_pdfs` (via Unpaywall), `zotero_add_linked_url_attachment` |
+| **PDF** | `zotero_find_and_attach_pdfs` (source-aware PDF cascade), `zotero_add_linked_url_attachment` |
 
 #### Prerequisites
 
-1. Install [Zotero](https://www.zotero.org/) (optional, for local mode)
-2. Get Zotero API key and library ID from [zotero.org/settings/keys](https://www.zotero.org/settings/keys)
+1. Install [Zotero](https://www.zotero.org/) if you want local read-only access without Web API credentials
+2. For write tools or remote Web API access, open [Zotero Settings -> Security -> Applications](https://www.zotero.org/settings/security#applications)
+3. Click `Create new private key` to generate your API key
+4. On the same page, copy the `User ID` shown below the button. Use this numeric value as `ZOTERO_LIBRARY_ID` for personal libraries
 
 #### Installation
 
@@ -38,7 +40,9 @@ Choose your platform below:
 
 ##### Claude Code
 
-Add to your `~/.claude/settings.json`:
+For Claude Code v2.1.5+, add to your `~/.claude.json` under `mcpServers`.
+
+For earlier versions, add to your `~/.claude/settings.json` under `mcpServers`:
 
 ```json
 {
@@ -48,7 +52,7 @@ Add to your `~/.claude/settings.json`:
       "args": ["serve"],
       "env": {
         "ZOTERO_API_KEY": "your-api-key",
-        "ZOTERO_LIBRARY_ID": "your-library-id",
+        "ZOTERO_LIBRARY_ID": "your-user-id",
         "ZOTERO_LIBRARY_TYPE": "user",
         "UNPAYWALL_EMAIL": "your-email@example.com",
         "UNSAFE_OPERATIONS": "all"
@@ -70,7 +74,7 @@ enabled = true
 
 [mcp_servers.zotero.env]
 ZOTERO_API_KEY = "your-api-key"
-ZOTERO_LIBRARY_ID = "your-library-id"
+ZOTERO_LIBRARY_ID = "your-user-id"
 ZOTERO_LIBRARY_TYPE = "user"
 UNPAYWALL_EMAIL = "your-email@example.com"
 UNSAFE_OPERATIONS = "all"
@@ -99,7 +103,7 @@ Then set environment variables in `~/.zshrc`:
 ```bash
 # Zotero MCP
 export ZOTERO_API_KEY="your-api-key"
-export ZOTERO_LIBRARY_ID="your-library-id"
+export ZOTERO_LIBRARY_ID="your-user-id"
 export ZOTERO_LIBRARY_TYPE="user"
 export UNPAYWALL_EMAIL="your-email@example.com"
 export UNSAFE_OPERATIONS="all"
@@ -109,12 +113,16 @@ export UNSAFE_OPERATIONS="all"
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `ZOTERO_API_KEY` | Yes | Your Zotero API key |
-| `ZOTERO_LIBRARY_ID` | Yes | Your library ID (numeric) |
+| `ZOTERO_API_KEY` | No for local read-only; Yes for Web/write tools | Your Zotero API key |
+| `ZOTERO_LIBRARY_ID` | No for local read-only; Yes for Web/write tools | Your Zotero `User ID` (numeric) for personal libraries |
 | `ZOTERO_LIBRARY_TYPE` | Yes | `user` or `group` |
 | `UNPAYWALL_EMAIL` | No | Email for Unpaywall PDF search |
 | `UNSAFE_OPERATIONS` | No | `items` (delete_items), `all` (delete_collection) |
 | `NO_PROXY` | No | Bypass proxy for localhost |
+
+Notes:
+- The minimal local setup is just `command = "zotero-mcp"` plus `args = ["serve"]`.
+- Do not leave placeholder values such as `your-api-key`, `your-user-id`, or `your-email@example.com` in your live config.
 
 #### Available Tools
 
@@ -130,6 +138,7 @@ export UNSAFE_OPERATIONS="all"
 | `zotero_get_notes` | Get notes |
 | `zotero_semantic_search` | Semantic search (uses embeddings) |
 | `zotero_advanced_search` | Advanced search |
+| `zotero_add_items_by_identifier` | Smart paper import from DOI, arXiv, landing pages, or direct PDF URLs; when web upload hits storage quota and Zotero Desktop is running, it can fall back to a local connector copy (`pdf_source=local_zotero_copy`) or reuse an existing local copy (`pdf_source=local_zotero_existing_copy`), exposing `local_item_key=...` when available |
 | `zotero_add_items_by_doi` | Import papers by DOI |
 | `zotero_add_items_by_arxiv` | Import preprints by arXiv ID |
 | `zotero_add_item_by_url` | Save webpage as item |
@@ -140,8 +149,11 @@ export UNSAFE_OPERATIONS="all"
 | `zotero_update_collection` | Rename collection |
 | `zotero_delete_collection` | Delete collection |
 | `zotero_delete_items` | Move items to trash |
-| `zotero_find_and_attach_pdfs` | Find and attach OA PDFs |
+| `zotero_find_and_attach_pdfs` | Re-run the source-aware PDF cascade for existing items |
+| `zotero_reconcile_collection_duplicates` | Post-import dedupe and collection-level cleanup |
 | `zotero_add_linked_url_attachment` | Add linked URL attachment |
+
+Workflow note: Claude Scholar's current research startup path prefers `zotero_add_items_by_identifier` for import, then `zotero_reconcile_collection_duplicates` as the standard post-import cleanup. Import ledger and local-copy reconcile remain internal diagnostics rather than default public MCP tools.
 
 ### 2. Browser Automation MCP (Optional)
 
@@ -165,11 +177,12 @@ Used for: Chrome browser control, web page interaction.
 After configuration, restart your CLI and verify MCP servers are connected:
 
 ```
-# In your CLI, try calling a Zotero tool:
+# Zotero example:
 > List my Zotero collections
+
 ```
 
-If the tool responds with your collections, the setup is complete.
+If the tool responds with your data (for example collections), the setup is complete.
 
 ## Troubleshooting
 

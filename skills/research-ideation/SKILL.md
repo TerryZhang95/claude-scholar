@@ -1,5 +1,5 @@
 ---
-name: Research Ideation
+name: research-ideation
 description: This skill should be used when the user asks to "brainstorm research ideas", "use 5W1H framework", "identify research gaps", "conduct gap analysis", "start research project", "conduct literature review", "define research question", "select research method", "plan research", or mentions research project initiation phase. Provides comprehensive guidance for research startup workflow from idea generation to planning.
 version: 0.1.0
 ---
@@ -121,11 +121,11 @@ ml-paper-writing (Paper writing)
 Through the Zotero MCP server, the research-ideation workflow automates literature management:
 
 - **Paper Discovery**: WebSearch finds relevant papers across academic databases
-- **Auto-Import**: Extract DOIs from search results, use `add_items_by_doi` to add papers with full metadata
-- **Collection Organization**: `create_collection` creates topic-based collections with standard sub-collections (Core Papers, Methods, Applications, Baselines, To-Read)
-- **PDF Attachment**: `find_and_attach_pdfs` automatically finds and attaches open-access PDFs via Unpaywall
-- **Full-Text Reading**: `get_item_fulltext` reads indexed PDF content for analysis and note-taking
-- **Library Search**: `search_library` and `get_collection_items` browse existing papers to avoid duplicates
+- **Auto-Import**: Extract DOI / arXiv ID / landing-page URLs from search results, then use `zotero_add_items_by_identifier` to prefer paper/preprint imports before any webpage fallback
+- **Collection Organization**: `zotero_create_collection` creates topic-based collections with standard sub-collections (Core Papers, Methods, Applications, Baselines, To-Read)
+- **PDF Attachment**: `zotero_add_items_by_identifier(..., attach_pdf=true)` runs a PDF cascade (landing-page PDF hints → direct PDF → Unpaywall), and `zotero_find_and_attach_pdfs` can be used as a follow-up sweep for remaining items
+- **Full-Text Reading**: `zotero_get_item_fulltext` reads indexed PDF content for analysis and note-taking
+- **Library Search**: `zotero_search_items` and `zotero_get_collection_items` browse existing papers to avoid duplicates
 
 ### Key Configuration
 

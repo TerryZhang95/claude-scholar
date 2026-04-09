@@ -9,7 +9,6 @@ Located in `~/.claude/agents/`:
 | Agent | Purpose | When to Use |
 |-------|---------|-------------|
 | literature-reviewer | Literature search, classification, and trend analysis | Starting a new research topic, literature survey |
-| data-analyst | Automated data analysis and visualization | Exploring datasets, generating plots |
 | rebuttal-writer | Systematic rebuttal writing with tone optimization | Responding to reviewer comments |
 | paper-miner | Extract writing knowledge from successful papers | Learning writing patterns from top-venue papers |
 | kaggle-miner | Extract engineering practices from Kaggle solutions | Learning competition strategies and pipelines |

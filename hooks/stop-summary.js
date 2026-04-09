@@ -21,6 +21,26 @@ try {
 
 const cwd = input.cwd || process.cwd();
 const reason = input.reason || 'task_complete';
+const binding = common.getProjectMemoryBinding(cwd);
+const path = require('path');
+
+function getTempBucket(file) {
+  const normalized = file.replace(/\\/g, '/');
+  const knownRoots = ['plan', 'docs/plans', '.claude/temp', 'tmp', 'temp'];
+
+  for (const root of knownRoots) {
+    if (normalized === root || normalized.startsWith(`${root}/`)) {
+      return root;
+    }
+  }
+
+  const dirname = path.dirname(normalized);
+  if (dirname === '.' || dirname === '') {
+    return '.';
+  }
+
+  return normalized.split('/')[0];
+}
 
 // Build message
 function buildMessage() {
@@ -58,22 +78,32 @@ function buildMessage() {
 
     const grouped = {};
     for (const file of tempInfo.files) {
-      const dir = require('path').dirname(file);
+      const dir = getTempBucket(file);
       if (!grouped[dir]) grouped[dir] = [];
-      grouped[dir].push(require('path').basename(file));
+      grouped[dir].push(file);
     }
 
-    for (const [dir, files] of Object.entries(grouped)) {
-      msg += `  📂 ${dir}/ (${files.length})\n`;
-      for (let i = 0; i < Math.min(3, files.length); i++) {
-        msg += `    • ${files[i]}\n`;
-      }
-      if (files.length > 3) {
-        msg += `    ... and ${files.length - 3} more\n`;
-      }
+    const orderedGroups = Object.entries(grouped).sort(([a], [b]) => {
+      if (a === '.' && b !== '.') return -1;
+      if (a !== '.' && b === '.') return 1;
+      return a.localeCompare(b);
+    });
+
+    for (const [dir, files] of orderedGroups) {
+      const label = dir === '.' ? './' : `${dir}/`;
+      msg += `  📂 ${label} (${files.length})\n`;
     }
   } else {
     msg += '✅ No temp files\n';
+  }
+
+  if (binding.bound) {
+    msg += '\n🧠 Bound Obsidian KB\n';
+    msg += `  Project: ${binding.projectId || 'unknown'}\n`;
+    msg += '  Minimum maintenance after research-state turns:\n';
+    msg += '    • Daily/YYYY-MM-DD.md\n';
+    msg += `    • ${binding.memoryPath || '.claude/project-memory/<project_id>.md'}\n`;
+    msg += '    • 00-Hub.md (only when top-level project status changes)\n';
   }
 
   msg += '---';

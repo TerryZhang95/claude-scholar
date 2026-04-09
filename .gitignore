@@ -7,6 +7,7 @@ Thumbs.db
 # Sensitive and local configuration
 .env
 .env.local
+.mcp.json
 settings*.json
 settings*.json.bak
 *.backup
@@ -37,3 +38,5 @@ plan/
 plans/
 projects/
 temp/
+tasks/
+teams/

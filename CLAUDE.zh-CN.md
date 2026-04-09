@@ -2,9 +2,9 @@
 
 ## 项目概述
 
-**Claude Scholar** - 面向学术研究和软件开发的个人 Claude Code 配置系统
+**Claude Scholar** - 面向学术研究和软件开发的半自动研究助手
 
-**Mission**: 覆盖完整的学术研究生命周期（从构思到发表）和软件开发工作流，同时提供插件开发和项目管理能力。
+**Mission**: 支持 Claude Code、OpenCode 和 Codex CLI，覆盖构思、编码、实验、写作、发表，以及插件开发和项目管理。
 
 ---
 
@@ -72,8 +72,8 @@
 |------|---------|------|
 | 1. 研究构思 | `research-ideation` skill + `literature-reviewer` agent + Zotero MCP | `/research-init`, `/zotero-review`, `/zotero-notes` |
 | 2. ML 项目开发 | `architecture-design` skill + `code-reviewer` agent | `/plan`, `/commit`, `/tdd` |
-| 3. 实验分析 | `results-analysis` skill + `data-analyst` agent | `/analyze-results` |
-| 4. 论文写作 | `ml-paper-writing` skill + `paper-miner` agent | - |
+| 3. 实验分析 | `results-analysis` skill + `results-report` skill | `/analyze-results` |
+| 4. 论文写作 | `ml-paper-writing` skill + `paper-miner` agent | `/mine-writing-patterns` |
 | 5. 论文自审 | `paper-self-review` skill | - |
 | 6. 投稿与 Rebuttal | `review-response` skill + `rebuttal-writer` agent | `/rebuttal` |
 | 7. 录用后处理 | `post-acceptance` skill | `/presentation`, `/poster`, `/promote` |
@@ -82,17 +82,26 @@
 
 - **自动化执行**: 5 个 Hook 在会话各阶段自动触发（技能评估、环境初始化、工作总结、安全检查）
 - **Zotero 集成**: 通过 Zotero MCP 服务器实现论文自动导入、集合管理、全文阅读和准确引用导出
+- **Obsidian 知识库**: 内置的 filesystem-first 项目知识库，统一管理文献、计划、TODO、实验、结果、写作、会议与归档，不依赖 MCP；默认图谱仅维护 `Maps/literature.canvas`，`.base` 视图需显式触发
 - **知识提取**: `paper-miner` 和 `kaggle-miner` agent 持续从论文和竞赛中提取知识
 - **技能进化**: `skill-development` → `skill-quality-reviewer` → `skill-improver` 三步改进循环
 
+### Obsidian 项目知识库规则
+
+- 如果当前仓库包含 `.claude/project-memory/registry.yaml`，默认启用 `obsidian-project-memory`，并将 Obsidian 视为该仓库的默认项目知识库。
+- 如果仓库还没绑定，但具备科研项目特征，默认启用 `obsidian-project-bootstrap` 自动导入到 vault。
+- 每个重要的项目 turn 至少更新：当日 daily note 与 repo 本地的 project memory；只有顶层项目状态真正变化时才更新 hub note。
+- 这个工作流不允许要求用户额外配置任何 Obsidian API 或密钥。
+
 ---
 
-## 技能目录（32 skills）
+## 技能目录（47 skills）
 
-### 🔬 研究与分析 (4 skills)
+### 🔬 研究与分析 (5 skills)
 
 - **research-ideation**: 研究构思启动（5W1H、文献综述、Gap 分析、研究问题制定、Zotero 自动集成）
-- **results-analysis**: 实验结果分析（统计检验、可视化、消融实验）
+- **results-analysis**: 严格实验分析（严谨统计、科研绘图、消融实验）
+- **results-report**: 完整实验总结报告（复盘、决策支持、Obsidian 结果报告）
 - **citation-verification**: 引文验证（多层验证：格式→API→信息→内容）
 - **daily-paper-generator**: 每日论文生成器，用于研究追踪
 
@@ -123,7 +132,7 @@
 - **skill-improver**: Skill 改进工具
 - **skill-quality-reviewer**: Skill 质量审查
 - **command-development**: Slash 命令开发
-- **command-name**: 插件结构指南
+- **plugin-structure**: 插件结构指南
 - **agent-identifier**: Agent 开发配置
 - **hook-development**: Hook 开发和事件处理
 - **mcp-integration**: MCP 服务器集成
@@ -134,6 +143,21 @@
 - **uv-package-manager**: uv 包管理器使用
 - **webapp-testing**: 本地 Web 应用测试
 - **kaggle-learner**: Kaggle 竞赛学习
+
+### 🧠 Obsidian 知识库 (11 skills)
+
+- **obsidian-project-memory**: 项目目录内默认启用的 Obsidian project memory 总控技能
+- **obsidian-project-bootstrap**: 将新项目或已有科研仓库导入 Obsidian 项目知识库
+- **obsidian-research-log**: daily、TODO、计划、会议记录
+- **obsidian-experiment-log**: 实验与结果沉淀
+- **obsidian-link-graph**: legacy 兼容辅助，用于修复 canonical notes 之间的 wikilink
+- **obsidian-synthesis-map**: legacy 兼容辅助，用于更高层的 synthesis notes 与比较总结
+- **obsidian-project-lifecycle**: detach、archive、purge、rebuild
+- **zotero-obsidian-bridge**: 将 Zotero collection/全文桥接到 Obsidian 详细论文笔记与默认的 `Maps/literature.canvas`
+- **obsidian-literature-workflow**: 项目 vault 内的论文笔记规范化与综述工作流
+- **obsidian-markdown**: 内置官方 Obsidian Markdown skill
+- **obsidian-cli**: 内置官方 Obsidian CLI skill
+- **obsidian-bases / json-canvas / defuddle**: 内置官方 `.base`、`.canvas` 与网页内容提取支持
 
 ### 🎨 网页设计 (3 skills)
 
@@ -150,8 +174,17 @@
 | 命令 | 功能 |
 |------|------|
 | `/research-init` | 启动 Zotero 集成研究构思工作流（自动建集合、导入论文、全文分析） |
-| `/zotero-review` | 从 Zotero 集合读取论文，生成结构化文献综述 |
-| `/zotero-notes` | 批量阅读 Zotero 论文，生成结构化阅读笔记 |
+| `/zotero-review` | 从 Zotero 集合读取论文，并综合到 Obsidian 文献综述与下游项目笔记 |
+| `/zotero-notes` | 批量阅读 Zotero 论文，创建/更新 Obsidian 详细阅读笔记并刷新 `Maps/literature.canvas` |
+| `/obsidian-init` | 为当前科研仓库初始化或导入 Obsidian 项目知识库 |
+| `/obsidian-ingest` | 将新的 Markdown 文件或目录按 classify -> promote / merge / stage-to-daily 入库 |
+| `/obsidian-review` | 从 Obsidian 项目笔记生成项目级文献综述 |
+| `/obsidian-notes` | 规范化论文笔记，并连接到项目知识、实验与结果 note |
+| `/obsidian-sync` | 强制执行 repo、project memory、Obsidian 三者之间的同步修复 |
+| `/obsidian-link` | 重建或增强项目 wikilinks 与知识图 |
+| `/obsidian-note` | 对单个 canonical note 执行 archive、purge 或 rename |
+| `/obsidian-project` | detach、archive、purge、rebuild 项目知识库 |
+| `/obsidian-views` | 显式生成可选的 `.base` 视图与额外 canvases |
 | `/analyze-results` | 分析实验结果（统计检验、可视化、消融实验） |
 | `/rebuttal` | 生成系统化 rebuttal 文档 |
 | `/presentation` | 创建会议演讲大纲 |
@@ -211,12 +244,13 @@
 
 ---
 
-## 代理（14 Agents）
+## 代理（16 Agents）
 
 ### 研究工作流代理
 
 - **literature-reviewer** - 文献搜索、分类和趋势分析（Zotero MCP 集成，支持自动导入、全文阅读）
-- **data-analyst** - 自动化数据分析和可视化
+- **literature-reviewer-obsidian** - 基于 filesystem 的 Obsidian 项目知识库文献综述
+- **research-knowledge-curator-obsidian** - 默认维护项目计划、TODO、文献、实验、结果、会议和写作的 Obsidian curator
 - **rebuttal-writer** - 系统化 rebuttal 写作，语气优化
 - **paper-miner** - 从成功论文中提取写作知识
 
@@ -244,10 +278,10 @@
 
 | 钩子 | 触发时机 | 功能 |
 |------|----------|------|
-| `session-start.js` | 会话开始 | 显示 Git 状态、待办事项、可用命令 |
-| `skill-forced-eval.js` | 每次用户输入 | 强制评估所有可用技能 |
-| `session-summary.js` | 会话结束 | 生成工作日志，检测 CLAUDE.md 更新 |
-| `stop-summary.js` | 会话停止 | 快速状态检查，临时文件检测 |
+| `session-start.js` | 会话开始 | 显示 Git 状态、待办事项、可用命令，以及已绑定的 Obsidian project-memory 状态 |
+| `skill-forced-eval.js` | 每次用户输入 | 强制评估所有可用技能，并在已绑定科研仓库中提示 Obsidian curator 流程 |
+| `session-summary.js` | 会话结束 | 生成工作日志，检测 CLAUDE.md 更新，并提醒 bound repo 的最小 Obsidian 写回 |
+| `stop-summary.js` | 会话停止 | 快速状态检查、临时文件检测，以及 bound repo 的 Obsidian 维护提醒 |
 | `security-guard.js` | 文件操作 | 安全验证（密钥检测、危险命令拦截） |
 
 ---

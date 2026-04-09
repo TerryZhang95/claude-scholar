@@ -30,6 +30,8 @@ try {
 const cwd = input.cwd || process.cwd();
 const projectName = path.basename(cwd);
 const homeDir = os.homedir();
+const binding = common.getProjectMemoryBinding(cwd);
+const researchCandidate = common.detectResearchProject(cwd);
 
 // Build output
 let output = '';
@@ -48,7 +50,7 @@ if (gitInfo.is_repo) {
   if (gitInfo.has_changes) {
     output += `⚠️  Uncommitted changes (${gitInfo.changes_count} files):\n`;
 
-    // Show change list (up to 10)
+    // Show change list (up to 5)
     const statusIcons = {
       'M': '📝',  // Modified
       'A': '➕',  // Added
@@ -57,7 +59,7 @@ if (gitInfo.is_repo) {
       '??': '❓'  // Untracked
     };
 
-    for (let i = 0; i < Math.min(gitInfo.changes.length, 10); i++) {
+    for (let i = 0; i < Math.min(gitInfo.changes.length, 5); i++) {
       const change = gitInfo.changes[i];
       const status = change.substring(0, 2).trim();
       const file = change.substring(3).trim();
@@ -66,8 +68,8 @@ if (gitInfo.is_repo) {
       output += `  ${icon} ${file}\n`;
     }
 
-    if (gitInfo.changes_count > 10) {
-      output += `  ... (${gitInfo.changes_count - 10} more files)\n`;
+    if (gitInfo.changes_count > 5) {
+      output += `  ... (${gitInfo.changes_count - 5} more files)\n`;
     }
   } else {
     output += `✅ Working directory clean\n`;
@@ -75,6 +77,21 @@ if (gitInfo.is_repo) {
   output += '\n';
 } else {
   output += `▸ Git: Not a repository\n\n`;
+}
+
+if (binding.bound) {
+  output += '🧠 Obsidian project memory: bound\n';
+  output += `  - Project: ${binding.projectId || 'unknown'}\n`;
+  output += `  - Status: ${binding.status || 'unknown'}\n`;
+  output += `  - Auto-sync: ${binding.autoSync ? 'on' : 'off'}\n`;
+  if (binding.vaultRoot) {
+    output += `  - Vault root: ${binding.vaultRoot}\n`;
+  }
+  output += '  - Suggested commands: /obsidian-sync, /obsidian-note\n\n';
+} else if (researchCandidate.candidate) {
+  output += '🧠 Obsidian project memory: research repo candidate\n';
+  output += `  - Detected markers: ${researchCandidate.markers.join(', ')}\n`;
+  output += '  - Suggested command: /obsidian-init\n\n';
 }
 
 // Package manager detection
