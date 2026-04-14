@@ -40,3 +40,6 @@ projects/
 temp/
 tasks/
 teams/
+
+# Local Obsidian project-memory bindings
+.claude/project-memory/

@@ -360,6 +360,51 @@ def save_registry(path: Path, data: dict[str, Any]) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
 
+def resolve_entry_path(raw_value: str | os.PathLike[str]) -> Path:
+    return Path(raw_value).expanduser().resolve()
+
+
+def validated_binding_paths(project_id: str, entry: dict[str, Any]) -> tuple[Path, Path, Path]:
+    raw_vault_root = entry.get('vault_root')
+    if not raw_vault_root:
+        raise SystemExit(f'Project {project_id!r} is missing vault_root in registry')
+
+    project_root = resolve_entry_path(str(raw_vault_root))
+    status = str(entry.get('status', 'active') or 'active').lower()
+
+    raw_archive_root = entry.get('archive_root')
+    archive_root = resolve_entry_path(str(raw_archive_root)) if raw_archive_root else None
+
+    if status == 'archived':
+        if archive_root is None:
+            raise SystemExit(f'Project {project_id!r} is archived but missing archive_root in registry')
+        try:
+            project_root.relative_to(archive_root)
+        except ValueError as exc:
+            raise SystemExit(
+                f'Unsafe registry for {project_id!r}: archived vault_root must stay inside archive_root'
+            ) from exc
+        if archive_root.name != 'Archive':
+            raise SystemExit(f'Unsafe registry for {project_id!r}: archive_root must point to an Archive directory')
+        vault_path = archive_root.parent
+        return project_root, archive_root, vault_path
+
+    if project_root.name != project_id:
+        raise SystemExit(f'Unsafe registry for {project_id!r}: vault_root leaf must match the project id')
+    if project_root.parent.name != 'Research':
+        raise SystemExit(f'Unsafe registry for {project_id!r}: vault_root must live under <vault>/Research/')
+
+    vault_path = project_root.parent.parent
+    expected_archive_root = (vault_path / 'Archive').resolve()
+    if archive_root is None:
+        archive_root = expected_archive_root
+    if archive_root != expected_archive_root:
+        raise SystemExit(
+            f'Unsafe registry for {project_id!r}: archive_root must be {expected_archive_root}'
+        )
+    return project_root, archive_root, vault_path
+
+
 def detect_project_features(repo_root: Path) -> dict[str, Any]:
     feature_checks = {
         '.git': (repo_root / '.git').exists(),
@@ -878,8 +923,7 @@ def resolve_binding(repo_root: Path, project_id: str | None = None) -> ProjectBi
     if not entry:
         raise SystemExit(f'Project {project_id!r} not found in registry')
 
-    project_root = Path(entry['vault_root'])
-    vault_path = project_root.parent.parent
+    project_root, archive_root, vault_path = validated_binding_paths(project_id, entry)
     return ProjectBinding(
         project_id=project_id,
         repo_root=repo_root,
@@ -889,7 +933,7 @@ def resolve_binding(repo_root: Path, project_id: str | None = None) -> ProjectBi
         hub_note=entry.get('hub_note', relative_note_path(project_root / '00-Hub.md', vault_path)),
         status=entry.get('status', 'active'),
         auto_sync=bool(entry.get('auto_sync', True)),
-        archive_root=Path(entry.get('archive_root') or (vault_path / 'Archive')),
+        archive_root=archive_root,
         note_language=resolve_note_language(repo_root, project_id, entry),
     )
 
