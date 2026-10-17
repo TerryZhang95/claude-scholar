@@ -22,6 +22,17 @@ Use this skill in the following order unless the task is unusually narrow:
 
 Google Scholar may still help with manual discovery, but it is **not** the canonical verification authority in this skill. Default verification should use programmatic sources such as Semantic Scholar, CrossRef, and arXiv.
 
+## Claim ledger gate
+
+Before a project plan, experiment note, or literature summary becomes manuscript prose:
+- identify the Claim Candidate or Evidence Record that supports the sentence,
+- preserve allowed wording and forbidden stronger wording,
+- keep project plans as hypotheses unless experiment artifacts or verified papers support them,
+- do not turn related-work motivation into evidence for the paper's own result,
+- mark unsupported claims as `[CLAIM NEEDS EVIDENCE]` instead of polishing them.
+
+If the repo context is clear enough for a first draft, still apply this gate before stating contributions, results, related-work contrasts, or rebuttal-facing claims.
+
 ## Core Philosophy: Collaborative Writing
 
 **Paper writing is collaborative, but Claude should be proactive in delivering drafts.**
@@ -167,9 +178,11 @@ Then verify and retrieve BibTeX using the citation workflow below.
 **Be proactive—deliver a complete draft rather than asking permission for each section.**
 
 If the repo provides clear results and the contribution is apparent:
-1. Write the full first draft end-to-end
-2. Present the complete draft for feedback
-3. Iterate based on scientist's response
+1. Check the claim ledger gate for contribution and result claims
+2. Write the full first draft end-to-end only for supported claims
+3. Mark unsupported or speculative claims explicitly
+4. Present the complete draft for feedback
+5. Iterate based on scientist's response
 
 If genuinely uncertain about framing or major claims:
 1. Draft what you can confidently
@@ -300,15 +313,16 @@ For detailed literature research guidance:
 
 ---
 
-## Knowledge Base: Paper-Miner Global Writing Memory
+## Knowledge Base: Paper-Miner Installed Writing Memory
 
-This skill consumes a **single canonical writing memory** maintained by `paper-miner`:
+This skill shares the **active installed writing memory** maintained by `paper-miner`
+with the Nature writing, polishing, response, and other academic writing skills:
 
 - `references/knowledge/paper-miner-writing-memory.md`
 
-This memory is **global**, not project-specific.
+This memory belongs to the active installed skill home, not to the source checkout copy.
 
-Even when `paper-miner` is invoked while working inside a specific repository, it still writes mined writing knowledge only into this one global memory. It does **not** maintain project-local writing memory.
+Even when `paper-miner` is invoked while working inside a specific repository, it still writes mined writing knowledge only into the active installed skill memory. It does **not** maintain project-local writing memory unless the user explicitly requests that.
 
 ### Canonical memory structure
 
@@ -336,12 +350,12 @@ Extracts reusable writing signals
 ↓
 Updates paper-miner-writing-memory.md
 ↓
-ml-paper-writing reuses that memory later
+Relevant academic writing skills reuse that memory later
 ```
 
 ### When to use this memory
 
-Use the global paper-miner memory when you need:
+Use the active installed paper-miner memory when you need:
 - structure inspiration for intros, methods, results, or discussion,
 - reusable transition phrases or framing templates,
 - venue-facing writing signals,
@@ -359,8 +373,8 @@ When drafting or revising with `ml-paper-writing`, read this memory **before** w
 - venue-facing polishing.
 
 Use this read order:
-1. `references/knowledge/paper-miner-writing-memory.md`
-2. repo-local evidence and experiment artifacts
+1. repo-local evidence and experiment artifacts
+2. `references/knowledge/paper-miner-writing-memory.md`, when relevant entries exist
 3. cited papers or notes if needed
 4. venue template and formatting constraints
 
@@ -372,7 +386,7 @@ Read narrowly, not exhaustively:
 
 ### Contribution rule
 
-Every paper mined by `paper-miner` should improve the same global memory.
+Every paper mined by `paper-miner` should improve the same active installed memory.
 
 Do not scatter newly mined knowledge across multiple maintained files.
 Do not create project-specific paper-miner memory.

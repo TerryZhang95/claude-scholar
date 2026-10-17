@@ -3,37 +3,46 @@
 
   <p>
     <a href="https://github.com/Galaxy-Dawn/claude-scholar/stargazers"><img src="https://img.shields.io/github/stars/Galaxy-Dawn/claude-scholar?style=flat-square&color=yellow" alt="Stars"/></a>
+    <a href="https://gitcode.com/Dawngammad/claude-scholar"><img src="https://gitcode.com/Dawngammad/claude-scholar/star/badge.svg" alt="GitCode Stars"/></a>
     <a href="https://github.com/Galaxy-Dawn/claude-scholar/network/members"><img src="https://img.shields.io/github/forks/Galaxy-Dawn/claude-scholar?style=flat-square" alt="Forks"/></a>
-    <img src="https://img.shields.io/github/last-commit/Galaxy-Dawn/claude-scholar?style=flat-square" alt="Last Commit"/>
+    <img src="https://img.shields.io/github/last-commit/Galaxy-Dawn/claude-scholar/main?style=flat-square" alt="Last Commit"/>
     <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
-    <img src="https://img.shields.io/badge/Claude_Code-Compatible-blueviolet?style=flat-square" alt="Claude Code"/>
-    <img src="https://img.shields.io/badge/Codex_CLI-Compatible-blue?style=flat-square" alt="Codex CLI"/>
-    <img src="https://img.shields.io/badge/OpenCode-Compatible-orange?style=flat-square" alt="OpenCode"/>
   </p>
 
 
   <strong>Language</strong>: <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a> | <a href="README.ja-JP.md">日本語</a>
+  <p><strong>Supported Platforms</strong>: <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/main">Claude Code</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex">Codex CLI</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/kimi">Kimi Code CLI</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode">OpenCode</a></p>
 
 </div>
 
-> Semi-automated research assistant for academic research and software development, especially for computer science and AI researchers. Supports [Claude Code](https://github.com/anthropics/claude-code), [Codex CLI](https://github.com/openai/codex), and [OpenCode](https://github.com/opencode-ai/opencode) across literature review, coding, experiments, reporting, writing, and project knowledge management.
+> Semi-automated research assistant for academic research and software development, especially for computer science and AI researchers. Supports [Claude Code](https://github.com/anthropics/claude-code), [Codex CLI](https://github.com/openai/codex), [Kimi Code CLI](https://github.com/MoonshotAI/kimi-code), and [OpenCode](https://github.com/opencode-ai/opencode) across literature review, coding, experiments, reporting, writing, and project knowledge management.
 
-  <p><em>Branch note</em>: the <code>main</code> branch is the Claude Code workflow. If you use Codex CLI, please see the <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex"><code>codex</code> branch</a>. If you use OpenCode, please see the <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode"><code>opencode</code> branch</a>.</p>
+  <p><em>Branch note</em>: the <code>main</code> branch is the Claude Code workflow. If you use Codex CLI, please see the <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex"><code>codex</code> branch</a>. If you use Kimi Code CLI, please see the <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/kimi"><code>kimi</code> branch</a>. If you use OpenCode, please see the <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode"><code>opencode</code> branch</a>.</p>
 
+
+## Sponsors
+
+| Sponsor | Description |
+| :---: | --- |
+| <a href="https://go.apimart.ai/gh-claude-scholar"><img src="assets/APIMart.png" alt="APIMart" width="180"></a> | Thanks to APIMart for sponsoring this project! APIMart is a low-cost API platform for AI image & video generation — GPT-Image-2 from $0.006/image, 160+ images per dollar. One async API covers both image and video: submit a task, get an ID, fetch results via polling or callback. Batch tens of thousands of images without timeouts, switch models without changing code. Pay-as-you-go with no monthly fee — [sign up here](https://go.apimart.ai/gh-claude-scholar) to get started. |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="assets/kimi-open-source-friends-dark.svg"><img alt="Kimi Open Source Friends" src="assets/kimi-open-source-friends-light.svg" width="180"></picture> | Thanks to the Kimi team for their strong support of this project! Official links: [Kimi Code](https://www.kimi.ai/code?aff=claude-scholar) · [Platform CN](https://platform.kimi.com?aff=claude-scholar) · [Platform Global](https://platform.kimi.ai?aff=claude-scholar). |
 
 ## Recent News
 
+- **2026-06-03**: **Kimi Code CLI branch added with strong support from Kimi** — added the `kimi` branch as the Kimi Code CLI edition of Claude Scholar and thank the Kimi team for their strong support of this project.
+- **2026-05-14**: **`expression-skill` made the communication core, `planning-with-files` restored as the default persistence layer, and the Nature writing stack expanded** — made [`expression-skill`](./skills/expression-skill/README.md) the explicit conclusion-first discipline for reporting, planning, file operations, and multi-step technical work; reintroduced [`planning-with-files`](./skills/planning-with-files/SKILL.md) as the default on-disk planning and progress-tracking workflow for complex tasks; introduced [`nature-writing`](./skills/nature-writing/README.md) for section drafting and argument construction; refreshed [`nature-polishing`](./skills/nature-polishing/README.md) to the latest upstream article-pattern release; and kept [`nature-response`](./skills/nature-response/README.md) plus [`nature-data`](./skills/nature-data/README.md) in the journal-writing stack.
+- **2026-05-13**: **Evidence-gated research workflow and `Sources/Papers` routing tightened** — added a shared `research-contract.md` for Evidence Records, claim strength, and Claim Promotion Gates; connected research ideation, Zotero ingestion, literature synthesis, results reporting, writing, and rebuttal workflows to that contract; and clarified that project paper notes live under `Sources/Papers` before promoted claims move into `Knowledge` or `Writing`.
 - **2026-04-24**: **Project-scoped Obsidian KB workflow consolidated** — rebuilt Obsidian project knowledge management into a vault-first workflow, consolidated the older overlapping memory skills into four focused skills, kept repo-local project binding metadata as a runtime layer, and made project navigation human-first instead of a machine registry dump.
-- **2026-04-22**: **Lean core, pruned default agents, safer install lifecycle, and cleaner paper discovery** — replaced large always-on `CLAUDE.md` / `AGENTS.md` files with compact core instructions, pruned the default agent set to the retained core agents, added safe install-state based uninstall support, generalized `daily-paper-generator` to broader topics with arXiv / bioRxiv support and a fixed Top 10 -> Top 3 -> Top 1 selection flow, and removed the low-use `planning-with-files` skill.
+- **2026-04-22**: **Lean core, pruned default agents, safer install lifecycle, and cleaner paper discovery** — replaced large always-on `CLAUDE.md` / `AGENTS.md` files with compact core instructions, pruned the default agent set to the retained core agents, added safe install-state based uninstall support, generalized `daily-paper-generator` to broader topics with arXiv / bioRxiv support and a fixed Top 10 -> Top 3 -> Top 1 selection flow.
 - **2026-04-15**: **pubfig and pubtab introduced** — introduced [`pubfig`](https://github.com/Galaxy-Dawn/pubfig), a Python package for publication-grade scientific figures, and [`pubtab`](https://github.com/Galaxy-Dawn/pubtab), a Python package for publication-ready tables and Excel↔LaTeX workflows. Together they provide a cleaner production stack for paper figures, benchmark tables, export control, and final artifact QA.
-- **2026-04-15**: **publication-chart-skill integrated into Claude Scholar** — wrapped [`pubfig`](https://github.com/Galaxy-Dawn/pubfig) + [`pubtab`](https://github.com/Galaxy-Dawn/pubtab) into `publication-chart-skill`, added the skill to the repository, and connected it to Claude Scholar's analysis and writing boundaries so publication-grade figure/table work now has an explicit handoff route instead of being mixed into general analysis or prose skills.
 
 <details>
 <summary>View older changelog</summary>
 
+- **2026-04-15**: **[`publication-chart-skill`](./skills/publication-chart-skill/SKILL.md) integrated into Claude Scholar** — wrapped [`pubfig`](https://github.com/Galaxy-Dawn/pubfig) + [`pubtab`](https://github.com/Galaxy-Dawn/pubtab) into [`publication-chart-skill`](./skills/publication-chart-skill/SKILL.md), added the skill to the repository, and connected it to Claude Scholar's analysis and writing boundaries so publication-grade figure/table work now has an explicit handoff route instead of being mixed into general analysis or prose skills.
 - **2026-03-31**: **Zotero smart-import workflow docs aligned** — updated Claude Scholar's research-facing docs around the latest `zotero-mcp` public surface: `zotero_add_items_by_identifier` is now the default paper-import path, `zotero_reconcile_collection_duplicates` is the standard post-import cleanup step, source-aware PDF cascade behavior is documented more accurately, and public vs internal diagnostics are now clearly separated.
 - **2026-03-31**: **README onboarding refreshed** — clarified that Claude Scholar is especially well-suited to computer science and AI researchers, added practical getting-started scenarios after installation, improved prerequisite and branch guidance, and made the “existing local md files must be manually merged” expectation much more explicit.
-- **2026-03-31**: **Installer and hook behavior tightened** — the installer now preserves existing local `AGENTS.md` while installing the repo-managed version as `AGENTS.scholar.md`, and the default hook summaries were trimmed to reduce noisy temp-file / uncommitted-file output while keeping safer write-guard behavior.
+- **2026-03-31**: **Installer and hook behavior tightened** — the installer now preserves existing local `CLAUDE.md` while installing the repo-managed version as `CLAUDE.scholar.md`, and the default hook summaries were trimmed to reduce noisy temp-file / uncommitted-file output while keeping safer write-guard behavior.
 - **2026-03-31**: **Japanese documentation added** — added Japanese docs for the main README plus `AGENTS`, `MCP_SETUP`, and `OBSIDIAN_SETUP`, so the OpenCode branch now has a more complete multilingual documentation surface.
 
 - **2026-02-25**: **Codex CLI** support — added `codex` branch supporting [OpenAI Codex CLI](https://github.com/openai/codex) with config.toml, 40 skills, 14 agents, and sandbox security
@@ -56,7 +65,7 @@
 | [Core Workflow](#core-workflow) | See the end-to-end research pipeline from ideation to publication. |
 | [Quick Start](#quick-start) | Install Claude Scholar in full, minimal, or selective mode. |
 | [Getting Started Scenarios](#getting-started-scenarios) | See a few realistic first-use scenarios after installation. |
-| [Integrations](#integrations) | Learn how Zotero and Obsidian fit into the workflow. |
+| [Integrations](#integrations) | Learn how Zotero, Obsidian, and optional X promotion fit into the workflow. |
 | [Primary Workflows](#primary-workflows) | Browse the main research and development workflows. |
 | [Supporting Workflows](#supporting-workflows) | See the background systems that strengthen the main workflow. |
 | [Documentation](#documentation) | Jump to setup docs, configuration, and templates. |
@@ -92,6 +101,10 @@ Claude Scholar is especially well-suited to:
 It can still help in other research settings, but its current workflow design is most aligned with computer science, AI, and adjacent computational research.
 
 ## Core Workflow
+
+Claude Scholar routes research work through a traceable path:
+`question -> evidence -> experiment -> analysis -> claim -> writing`.
+Each stage should preserve what is known, what is uncertain, and what decision should happen next.
 
 - **Ideation**: turn a vague topic into concrete questions, research gaps, and an initial plan.
 - **Literature**: search, import, organize, and read papers through Zotero collections.
@@ -308,6 +321,17 @@ Use Obsidian when you want Claude Scholar to maintain a filesystem-first researc
 
 See [OBSIDIAN_SETUP.md](./OBSIDIAN_SETUP.md).
 
+### Xquik (optional)
+
+Use Xquik when `/promote` needs bounded public X research, draft analysis, or
+publishing from an approved connected account. Claude Scholar keeps retrieved
+posts outside scholarly evidence and requires a complete preview plus explicit
+approval before each write.
+
+See [MCP_SETUP.md](./MCP_SETUP.md) for client setup and
+[`xquik-promotion.md`](./skills/post-acceptance/references/xquik-promotion.md)
+for the promotion workflow.
+
 ## Primary Workflows
 
 Complete academic research lifecycle — 7 stages from idea to publication.
@@ -320,7 +344,7 @@ End-to-end research startup from idea generation to literature management.
 |---|---|---|
 | Skill | `research-ideation` | Turn vague topics into structured questions, gap analysis, and an initial research plan. |
 | Agent | `literature-reviewer` | Search, classify, and synthesize papers into an actionable literature picture. |
-| Command | `/research-init` | Start a new topic from literature search to Zotero organization and proposal drafting. |
+| Command | `/research-init` | Start a new topic with literature search, Zotero organization, research question cards, and proposal drafting only when the evidence gate passes. |
 | Command | `/zotero-review` | Review an existing Zotero collection and generate a structured literature synthesis. |
 | Command | `/zotero-notes` | Batch-read a Zotero collection and create structured paper reading notes. |
 
@@ -330,11 +354,13 @@ End-to-end research startup from idea generation to literature management.
 - **PDF & Full Text**: attach PDFs when available, read full text when possible, and fall back to abstract-level analysis when necessary.
 - **Gap Analysis**: identify literature, methodological, application, interdisciplinary, or temporal gaps.
 - **Research Question & Planning**: convert the review into concrete questions, initial hypotheses, and next-step planning.
+- **Evidence Gate**: keep weak sources, project hypotheses, and missing evidence explicit before promoting a claim into `Knowledge`, `Writing`, or a proposal.
 
 **Typical output**
+- research question cards with hypotheses, evidence needs, falsification criteria, and next actions
 - literature review notes
 - structured Zotero collection
-- project proposal / research direction draft
+- project proposal only when the selected question has enough verified evidence; otherwise a research direction / intake draft
 
 ### 2. ML Project Development
 
@@ -366,10 +392,11 @@ Strict analysis of experimental results with scientific figures and report-ready
 |---|---|---|
 | Skill | `results-analysis` | Produce a strict analysis bundle with rigorous statistics, real scientific figures, and analysis artifacts. |
 | Skill | `results-report` | Turn analysis artifacts into a complete post-experiment report with decisions, limitations, and next actions. |
-| Command | `/analyze-results` | Run the full experiment workflow in one shot: strict analysis first, then final report generation. |
+| Command | `/analyze-results` | Run a blocker-first experiment workflow: validate evidence, run strict analysis when possible, then generate a report only when the bundle is sufficient. |
 
 **How it works**
 - **Data Processing**: read experiment logs, metrics files, and result directories.
+- **Blocker-First Gate**: lock unit of analysis, primary metric, seeds/folds/runs, provenance, and comparison family before producing claims.
 - **Statistical Testing**: run strict statistical checks such as t-test / ANOVA / Wilcoxon where appropriate.
 - **Visualization**: generate real scientific figures with interpretation guidance, not just vague plotting suggestions.
 - **Ablation & Comparison**: analyze component contribution, performance tradeoffs, and stability.
@@ -381,6 +408,7 @@ Strict analysis of experimental results with scientific figures and report-ready
 - `figure-catalog.md`
 - `figures/`
 - post-experiment summary report in Obsidian `Results/Reports/`
+- blocker summary / audit note when evidence is incomplete
 
 ### 4. Paper Writing
 
@@ -389,16 +417,29 @@ Systematic academic writing from structure setup to draft refinement.
 | Type | Name | One-line explanation |
 |---|---|---|
 | Skill | `ml-paper-writing` | Draft publication-oriented ML/AI papers from repo context, evidence, and literature. |
+| Skill | [`nature-writing`](./skills/nature-writing/README.md) | Draft or rebuild Nature-style manuscript sections from claims, figures, results, notes, or Chinese drafts. |
+| Skill | [`nature-polishing`](./skills/nature-polishing/README.md) | Polish, restructure, or translate manuscript prose into concise Nature-leaning English. |
+| Skill | [`nature-response`](./skills/nature-response/README.md) | Draft, audit, or revise point-by-point reviewer response letters for Nature-family revisions. |
+| Skill | [`nature-data`](./skills/nature-data/README.md) | Prepare Nature-ready Data Availability statements, repository plans, and FAIR metadata checks. |
 | Skill | `citation-verification` | Check references, metadata, and claim-citation alignment to prevent citation mistakes. |
 | Skill | `writing-anti-ai` | Reduce robotic phrasing and improve clarity, rhythm, and human academic tone. |
 | Skill | `latex-conference-template-organizer` | Clean messy conference templates into an Overleaf-ready writing structure. |
 | Agent | `paper-miner` | Mine strong papers for reusable writing patterns, structure, and venue expectations. |
-| Command | `/mine-writing-patterns` | Read a paper and merge reusable writing knowledge into the global paper-miner writing memory. |
+| Command | `/mine-writing-patterns` | Read a paper and merge reusable writing knowledge into the active installed paper-miner writing memory. |
+
+The mined memory is shared by `ml-paper-writing`, Nature writing and polishing,
+and reviewer-response skills. Re-running `scripts/setup.sh` preserves the active
+memory, and uninstall leaves it in place. Back up that file before updating
+skills with a manual `cp -r`.
 
 **How it works**
 - **Template Preparation**: clean conference templates into an Overleaf-ready structure.
+- **Journal-Style Polishing**: tighten paragraph logic, hedging, and section moves for Nature-leaning prose when needed.
+- **Reviewer Response**: structure major/minor revision comments into an auditable point-by-point response package.
+- **Data Availability**: prepare Nature-ready repository plans, dataset citations, and availability statements.
 - **Citation Verification**: verify references, metadata, and claim-citation alignment.
-- **Systematic Writing**: draft sections from repo context, experiment evidence, and literature notes.
+- **Systematic Writing**: draft sections from repo context, experiment evidence, and literature notes, while keeping unsupported claims marked instead of polished.
+- **Claim Ledger**: every contribution, result, and contrast should trace to evidence or remain explicitly speculative.
 - **Style Refinement**: reduce robotic phrasing and improve rhythm, clarity, and tone.
 
 ### 5. Paper Self-Review
@@ -412,6 +453,7 @@ Quality assurance before submission.
 **How it works**
 - **Structure Check**: logical flow, section balance, and narrative coherence.
 - **Logic Validation**: claim-evidence alignment, assumption clarity, and argument consistency.
+- **Claim Audit**: verify that main claims are supported by evidence, weaken over-strong language, and preserve uncertainty when needed.
 - **Citation Audit**: reference correctness and completeness.
 - **Figure Quality**: caption completeness, readability, and accessibility.
 - **Compliance**: page limits, formatting, and disclosure requirements.
@@ -423,14 +465,14 @@ Submission preparation and review response workflow.
 | Type | Name | One-line explanation |
 |---|---|---|
 | Skill | `review-response` | Structure reviewer comments into an evidence-based rebuttal workflow. |
-| Agent | `rebuttal-writer` | Draft professional, respectful, and strategically organized rebuttal text. |
-| Command | `/rebuttal` | Generate a complete rebuttal draft from review comments and evidence. |
+| Agent | `rebuttal-writer` | Optional specialist for professional, respectful, and strategically organized rebuttal text when available. |
+| Command | `/rebuttal` | Generate an evidence-anchored rebuttal draft from review comments, with unresolved points marked instead of hidden. |
 
 **How it works**
 - **Pre-submission Checks**: venue-specific formatting, anonymization, and checklist requirements.
 - **Review Analysis**: classify reviewer comments into actionable categories.
 - **Response Strategy**: decide whether to accept, defend, clarify, or propose new experiments.
-- **Rebuttal Writing**: generate structured, evidence-based responses with professional tone.
+- **Rebuttal Writing**: generate structured responses with professional tone, evidence anchors, and explicit unresolved items.
 
 ### 7. Post-Acceptance Processing
 
@@ -446,7 +488,7 @@ Conference preparation and research promotion after acceptance.
 **How it works**
 - **Presentation**: prepare talk structure and slide guidance.
 - **Poster**: organize content into poster-ready layout and hierarchy.
-- **Promotion**: generate social media, blog, or summary material for broader communication.
+- **Promotion**: verify claims, draft by platform, and optionally use Xquik for bounded X research or approved publishing.
 
 ## Supporting Workflows
 
@@ -473,15 +515,14 @@ Use Obsidian as the project-scoped durable knowledge surface, not just as a note
 | Command | `/kb-lint` | Run deterministic KB health checks and update `_system/lint-report.md`. |
 | Command | `/kb-archive` | Archive, detach, purge, or rename KB objects while keeping links and registry consistent. |
 | Command | `/kb-map` | Generate or repair explicit-only KB artifacts beyond the default literature canvas. |
-| Command | `/kb-literature-review` | Generate literature synthesis from `Sources/Papers` into `Knowledge`, `Writing`, and `Maps/literature.canvas`. |
-
-Legacy `/obsidian-*` commands remain as deprecated aliases for one transition window. They forward to the `/kb-*` surface and do not restore the old directory layout.
+| Command | `/kb-literature-review` | Generate evidence-gated literature synthesis from `Sources/Papers` into `Knowledge`, optional `Writing`, and `Maps/literature.canvas`. |
 
 **How it works**
 - bind an existing repo to an Obsidian vault,
 - route stable knowledge into `Sources / Knowledge / Experiments / Results / Results/Reports / Writing / Daily / Maps`,
 - keep `Daily/` and repo-local binding metadata updated conservatively,
 - ingest new source material into the correct canonical destination,
+- keep abstract-only and webpage-placeholder sources from supporting durable claims,
 - only generate extra Bases or canvases on explicit request.
 - use `/kb-sync` for deterministic resyncs and `/kb-links` for standalone link repair.
 
@@ -526,6 +567,23 @@ Cross-platform hooks automate routine workflow checks and reminders.
 - **At session start**: show Git state, available commands, and project-memory context.
 - **At session end/stop**: summarize work and remind the user about minimum maintenance tasks.
 - **Security**: block catastrophic commands and require confirmation for dangerous but legitimate ones.
+
+### Communication and Reporting Discipline
+
+Use a reusable communication layer when the task needs conclusion-first reporting, concrete evidence, visible risk, or compact next-step guidance.
+
+| Type | Name | One-line explanation |
+|---|---|---|
+| Skill | [`expression-skill`](./skills/expression-skill/README.md) | Enforces conclusion-first, concrete, checkable communication for technical work, writing, documentation, file operations, and multi-step tasks. |
+| Skill | [`planning-with-files`](./skills/planning-with-files/SKILL.md) | Makes complex work persistent on disk with `task_plan.md`, `notes.md`, and deliverable files instead of relying only on transient chat context. |
+
+**How it works**
+- lead with the conclusion instead of narration,
+- prefer commands, paths, counts, checks, and observable behavior over abstract process language,
+- ask clarifying questions only when ambiguity changes the outcome,
+- surface risk, uncertainty, and destructive boundaries early,
+- keep long-running work visible with step / checkpoint style roadmarks,
+- persist multi-step work to disk with `task_plan.md` and `notes.md` instead of relying only on transient context.
 
 ### Knowledge Extraction Workflow
 
@@ -612,6 +670,8 @@ This project is inspired by and builds upon excellent work from the community:
 
 - **[everything-claude-code](https://github.com/anthropics/everything-claude-code)** - Comprehensive resource for Claude Code CLI
 - **[AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs)** - Research-focused skills and configurations
+- **[expression-skill](https://github.com/Galaxy-Dawn/expression-skill)** - Public conclusion-first communication skill reused here for reporting and response discipline
+- **[nature-skills](https://github.com/Yuan1z0825/nature-skills)** - Nature-oriented writing, polishing, reviewer-response, and data-availability skills reused here with attribution
 
 These projects provided valuable insights and foundations for the research-oriented features in Claude Scholar.
 

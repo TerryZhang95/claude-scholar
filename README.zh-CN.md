@@ -3,36 +3,45 @@
 
   <p>
     <a href="https://github.com/Galaxy-Dawn/claude-scholar/stargazers"><img src="https://img.shields.io/github/stars/Galaxy-Dawn/claude-scholar?style=flat-square&color=yellow" alt="Stars"/></a>
+    <a href="https://gitcode.com/Dawngammad/claude-scholar"><img src="https://gitcode.com/Dawngammad/claude-scholar/star/badge.svg" alt="GitCode Stars"/></a>
     <a href="https://github.com/Galaxy-Dawn/claude-scholar/network/members"><img src="https://img.shields.io/github/forks/Galaxy-Dawn/claude-scholar?style=flat-square" alt="Forks"/></a>
-    <img src="https://img.shields.io/github/last-commit/Galaxy-Dawn/claude-scholar?style=flat-square" alt="Last Commit"/>
+    <img src="https://img.shields.io/github/last-commit/Galaxy-Dawn/claude-scholar/main?style=flat-square" alt="Last Commit"/>
     <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
-    <img src="https://img.shields.io/badge/Claude_Code-Compatible-blueviolet?style=flat-square" alt="Claude Code"/>
-    <img src="https://img.shields.io/badge/Codex_CLI-Compatible-blue?style=flat-square" alt="Codex CLI"/>
-    <img src="https://img.shields.io/badge/OpenCode-Compatible-orange?style=flat-square" alt="OpenCode"/>
   </p>
 
 
   <strong>语言</strong>: <a href="README.md">English</a> | <a href="README.zh-CN.md">中文</a> | <a href="README.ja-JP.md">日本語</a>
+  <p><strong>支持平台</strong>: <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/main">Claude Code</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex">Codex CLI</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/kimi">Kimi Code CLI</a> | <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode">OpenCode</a></p>
 
 </div>
 
-> 面向学术研究和软件开发的半自动研究助手，尤其适合计算机科学与 AI 研究者。支持 [Claude Code](https://github.com/anthropics/claude-code)、[Codex CLI](https://github.com/openai/codex) 和 [OpenCode](https://github.com/opencode-ai/opencode)，覆盖文献管理、编码、实验分析、结果报告、写作与项目知识库维护。
+> 面向学术研究和软件开发的半自动研究助手，尤其适合计算机科学与 AI 研究者。支持 [Claude Code](https://github.com/anthropics/claude-code)、[Codex CLI](https://github.com/openai/codex)、[Kimi Code CLI](https://github.com/MoonshotAI/kimi-code) 和 [OpenCode](https://github.com/opencode-ai/opencode)，覆盖文献管理、编码、实验分析、结果报告、写作与项目知识库维护。
 
-  <p><em>分支说明</em>：<code>main</code> 分支对应 Claude Code 工作流。如果你使用 Codex CLI，请查看 <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex"><code>codex</code> 分支</a>；如果你使用 OpenCode，请查看 <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode"><code>opencode</code> 分支</a>。</p>
+  <p><em>分支说明</em>：<code>main</code> 分支对应 Claude Code 工作流。如果你使用 Codex CLI，请查看 <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/codex"><code>codex</code> 分支</a>；如果你使用 Kimi Code CLI，请查看 <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/kimi"><code>kimi</code> 分支</a>；如果你使用 OpenCode，请查看 <a href="https://github.com/Galaxy-Dawn/claude-scholar/tree/opencode"><code>opencode</code> 分支</a>。</p>
+
+## Sponsors
+
+| 赞助商 | 介绍 |
+| :---: | --- |
+| <a href="https://go.apimart.ai/gh-claude-scholar"><img src="assets/APIMart.png" alt="APIMart" width="180"></a> | 感谢 APIMart 赞助了本项目！APIMart 是专注 AI 图片/视频生成的低价 API 平台，GPT-Image-2 低至 $0.006/张，1 美元可出图 160+ 张。图片、视频一套异步 API 通吃，提交任务拿 ID、回调取结果，跑批万张不超时、换模型不改代码。按量付费、无月费，通过此[注册链接](https://go.apimart.ai/gh-claude-scholar)注册即可开用。 |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="assets/kimi-open-source-friends-dark.svg"><img alt="Kimi Open Source Friends" src="assets/kimi-open-source-friends-light.svg" width="180"></picture> | 感谢 Kimi 团队对本项目的大力支持！官方链接：[Kimi Code](https://www.kimi.com/code?aff=claude-scholar) · [中国大陆平台](https://platform.kimi.com?aff=claude-scholar) · [全球平台](https://platform.kimi.ai?aff=claude-scholar)。 |
 
 ## 最新动态
 
-- **2026-04-24**: **Project-scoped Obsidian KB workflow 完成合并** — 将 Obsidian 项目知识管理重构为 vault-first workflow，把旧的重叠 memory skills 合并为四个核心 skill，保留 repo-local project binding metadata 作为 runtime 层，并把项目导航改成人类优先，而不是机器 registry dump。
-- **2026-04-22**: **精简核心指令、裁剪默认 agents、安全安装生命周期与通用论文发现流程** — 将大型 always-on `CLAUDE.md` / `AGENTS.md` 改为紧凑核心指令，裁剪默认 agent 集合并保留主链路所需的核心 agents，新增基于 install state 的安全卸载支持，将 `daily-paper-generator` 扩展为面向通用 topic 的 arXiv / bioRxiv 检索与 Top 10 -> Top 3 -> Top 1 固定筛选流程，并删除低使用率的 `planning-with-files` skill。
+- **2026-06-03**: **新增 Kimi Code CLI 分支，并感谢 Kimi 对本项目的大力支持** — 已将 `kimi` 分支作为 Claude Scholar 的 Kimi Code CLI 版本纳入支持平台；感谢 Kimi 团队对本项目的持续支持与帮助。
+- **2026-05-14**: **将 `expression-skill` 提升为核心表达层，把 `planning-with-files` 恢复为默认持久规划层，并继续扩展 Nature 写作栈** — 把 [`expression-skill`](./skills/expression-skill/README.md) 明确为汇报、规划、文件操作和多步骤技术任务的结论先行表达纪律；将 [`planning-with-files`](./skills/planning-with-files/SKILL.md) 重新接回默认的落盘规划与进度跟踪工作流，用 `task_plan.md` / `notes.md` 管理复杂任务；引入用于章节起草与论证构建的 [`nature-writing`](./skills/nature-writing/README.md)；将 [`nature-polishing`](./skills/nature-polishing/README.md) 刷新到上游最新 article-pattern 版本；并继续保留 [`nature-response`](./skills/nature-response/README.md) 与 [`nature-data`](./skills/nature-data/README.md) 作为 journal-writing 栈的一部分。
+- **2026-05-13**: **证据门槛研究工作流与 `Sources/Papers` 路由完成收紧** — 新增共享的 `research-contract.md`，统一 Evidence Records、claim strength 和 Claim Promotion Gate；将研究构思、Zotero 导入、文献综合、结果报告、论文写作与 rebuttal 工作流接入同一证据契约；并明确项目论文源笔记先放在 `Sources/Papers`，通过证据门槛后再进入 `Knowledge` 或 `Writing`。
+- **2026-04-24**: **项目级 Obsidian KB 工作流完成合并** — 将 Obsidian 项目知识管理重构为以 vault 为中心的工作流，把旧的重叠记忆技能合并为四个核心技能，保留仓库本地的项目绑定元数据作为运行时层，并把项目导航改成人类优先，而不是机器注册表清单。
+- **2026-04-22**: **精简核心指令、裁剪默认 agents、安全安装生命周期与通用论文发现流程** — 将大型常驻 `CLAUDE.md` / `AGENTS.md` 改为紧凑核心指令，裁剪默认 agent 集合并保留主链路所需的核心 agents，新增基于安装状态的安全卸载支持，将 `daily-paper-generator` 扩展为面向通用主题的 arXiv / bioRxiv 检索与 Top 10 -> Top 3 -> Top 1 固定筛选流程。
 - **2026-04-15**: **提出 pubfig 与 pubtab 两个 Python package** — 推出了 [`pubfig`](https://github.com/Galaxy-Dawn/pubfig)（用于论文级 scientific figures）和 [`pubtab`](https://github.com/Galaxy-Dawn/pubtab)（用于 publication-ready tables 与 Excel↔LaTeX workflows）两个独立 Python package，为研究者提供更清晰的论文图、benchmark 表、导出控制与最终 QA 生产路径。
-- **2026-04-15**: **将 publication-chart-skill 融入 Claude Scholar** — 把 [`pubfig`](https://github.com/Galaxy-Dawn/pubfig) + [`pubtab`](https://github.com/Galaxy-Dawn/pubtab) 封装成 `publication-chart-skill`，加入仓库，并接到 Claude Scholar 的分析/写作边界里，让论文级图表工作有了明确的 handoff 路径，而不是继续混在通用分析或 prose skill 里。
 
 <details>
 <summary>查看历史更新日志</summary>
 
+- **2026-04-15**: **将 [`publication-chart-skill`](./skills/publication-chart-skill/SKILL.md) 融入 Claude Scholar** — 把 [`pubfig`](https://github.com/Galaxy-Dawn/pubfig) + [`pubtab`](https://github.com/Galaxy-Dawn/pubtab) 封装成 [`publication-chart-skill`](./skills/publication-chart-skill/SKILL.md)，加入仓库，并接到 Claude Scholar 的分析/写作边界里，让论文级图表工作有了明确的交接路径，而不是继续混在通用分析或文本写作技能里。
 - **2026-03-31**: **Zotero smart-import 工作流文档完成对齐** — 围绕最新 `zotero-mcp` 的公开能力，系统更新了 Claude Scholar 的研究工作流文档：将 `zotero_add_items_by_identifier` 明确为默认论文导入入口，把 `zotero_reconcile_collection_duplicates` 设为标准导入后清理步骤，更准确地说明了来源感知 PDF cascade，同时把公开工具与内部诊断能力的边界重新讲清楚了。
-- **2026-03-31**: **README 上手路径完成刷新** — 明确了 Claude Scholar 尤其适合计算机科学与 AI 研究者，在安装说明后补充了更贴近真实使用的上手场景，进一步收紧了 prerequisite / 分支说明，并把“如果用户本地已有 md 文件，需要手动 merge”这件事写得更明确。
-- **2026-03-31**: **安装器与 hooks 行为进一步收口** — 安装器现在会保留已有的本地 `AGENTS.md`，并把仓库版本作为 `AGENTS.scholar.md` sidecar 文件安装；同时默认 hooks 的摘要输出进一步降噪，减少 temp files / uncommitted files 的噪声，同时保留更安全的写入守卫边界。
+- **2026-03-31**: **README 上手路径完成刷新** — 明确了 Claude Scholar 尤其适合计算机科学与 AI 研究者，在安装说明后补充了更贴近真实使用的上手场景，进一步收紧了前置条件和分支说明，并把“如果用户本地已有 md 文件，需要手动合并”这件事写得更明确。
+- **2026-03-31**: **安装器与 hooks 行为进一步收口** — 安装器现在会保留已有的本地 `CLAUDE.md`，并把仓库版本作为 `CLAUDE.scholar.md` 旁路文件安装；同时默认 hooks 的摘要输出进一步降噪，减少临时文件和未提交文件提示的噪声，同时保留更安全的写入守卫边界。
 - **2026-03-31**: **日文文档补齐** — 为主 README 以及 `AGENTS`、`MCP_SETUP`、`OBSIDIAN_SETUP` 补充了日文文档，使 OpenCode 分支的多语言文档入口更完整。
 
 - **2026-02-25**: **Codex CLI** 支持 — 新增 `codex` 分支，支持 [OpenAI Codex CLI](https://github.com/openai/codex)，包含 config.toml、40 个 skills、14 个 agents 和 sandbox 安全机制
@@ -55,7 +64,7 @@
 | [核心工作流](#核心工作流) | 查看从研究构思到发表的主链路。 |
 | [快速开始](#快速开始) | 选择完整、最小或选择性安装方式。 |
 | [上手场景](#上手场景) | 查看安装完成后几种最常见的上手场景。 |
-| [集成能力](#集成能力) | 了解 Zotero 和 Obsidian 如何接入工作流。 |
+| [集成能力](#集成能力) | 了解 Zotero、Obsidian 和可选 X 推广如何接入工作流。 |
 | [主要工作流](#主要工作流) | 查看核心研究与开发工作流。 |
 | [支撑工作流](#支撑工作流) | 查看支撑主工作流的后台机制。 |
 | [文档入口](#文档入口) | 快速跳转到 setup、配置和模板文档。 |
@@ -84,13 +93,17 @@ Claude Scholar **不是**那种试图替代研究者、追求端到端全自动�
 Claude Scholar 当前尤其适合：
 
 - **计算机科学研究者**：需要在文献、代码、实验和论文写作之间频繁切换；
-- **AI / ML researcher**：希望用一套工作流串起构思、实现、分析、报告和 rebuttal；
-- **research engineer 与研究生**：希望引入更强的流程结构，但不放弃人的判断；
-- **偏软件与计算驱动的学术项目**：能够直接受益于 Zotero、Obsidian、CLI 自动化和可追踪的 project memory。
+- **AI / ML 研究者**：希望用一套工作流串起构思、实现、分析、报告和 rebuttal；
+- **研究工程师与研究生**：希望引入更强的流程结构，但不放弃人的判断；
+- **偏软件与计算驱动的学术项目**：能够直接受益于 Zotero、Obsidian、CLI 自动化和可追踪的项目记忆。
 
-它当然也可以帮助其他研究场景，但当前这套工作流的设计重心，最贴近计算机科学、AI 以及相邻的 computational research。
+它当然也可以帮助其他研究场景，但当前这套工作流的设计重心，最贴近计算机科学、AI 以及相邻的计算型研究。
 
 ## 核心工作流
+
+Claude Scholar 将研究工作路由为一条可追踪路径：
+`问题 -> 证据 -> 实验 -> 分析 -> 论断 -> 写作`。
+每个阶段都应该保留：已知什么、不确定什么、下一步该做什么决定。
 
 - **研究构思**：把模糊主题收敛成具体研究问题、研究空白和初步计划。
 - **文献工作流**：通过 Zotero 文献集合检索、导入、组织并阅读论文。
@@ -129,7 +142,7 @@ bash /tmp/claude-scholar/scripts/setup.sh
 - 保留已有的 `env`、模型/provider 配置、API key、permissions，以及当前 `mcpServers` 的现有取值
 - 对 hooks 采用追加缺失项的方式，而不是整体替换
 
-**重要 CLAUDE 说明**：如果你原来就有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，安装后请查看 `~/.claude/CLAUDE.scholar.md` 和 `~/.claude/CLAUDE.zh-CN.scholar.md`，并将其中你需要的 Claude Scholar 内容按需 merge 到你自己的文件里；不要假设这些 sidecar 文件会自动生效。
+**重要 CLAUDE 说明**：如果你原来就有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，安装后请查看 `~/.claude/CLAUDE.scholar.md` 和 `~/.claude/CLAUDE.zh-CN.scholar.md`，并将其中你需要的 Claude Scholar 内容按需合并到你自己的文件里；不要假设这些旁路文件会自动生效。
 
 以后做增量更新时：
 
@@ -170,7 +183,7 @@ cp -r /tmp/claude-scholar/skills/git-workflow ~/.claude/skills/
 cp -r /tmp/claude-scholar/skills/bug-detective ~/.claude/skills/
 ```
 
-**安装后**：最小化/手动安装**不会自动合并** `settings.json`；请按需从 `settings.json.template` 复制你需要的 hooks 或 MCP 条目。如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需 merge 到你的文件里，而不是直接覆盖。
+**安装后**：最小化/手动安装**不会自动合并** `settings.json`；请按需从 `settings.json.template` 复制你需要的 hooks 或 MCP 条目。如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需合并到你的文件里，而不是直接覆盖。
 
 ### 选项 3：选择性安装
 
@@ -188,7 +201,7 @@ cp rules/coding-style.md ~/.claude/rules/
 cp rules/agents.md ~/.claude/rules/
 ```
 
-**安装后**：选择性/手动安装**不会自动合并** `settings.json`；请按需从 `settings.json.template` 复制你需要的 hooks 或 MCP 条目。如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需 merge 到你的文件里，而不是直接覆盖。
+**安装后**：选择性/手动安装**不会自动合并** `settings.json`；请按需从 `settings.json.template` 复制你需要的 hooks 或 MCP 条目。如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需合并到你的文件里，而不是直接覆盖。
 
 ### 选项 4：插件市场安装
 
@@ -217,7 +230,7 @@ mkdir -p .claude/rules
 cp /tmp/claude-scholar/rules/*.md .claude/rules/
 ```
 
-**安装后**：插件安装**不会**自动加载 `CLAUDE.md` 或配置 `settings.json`；如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需 merge 到你的文件里，而不是假设插件会自动应用。如需 Zotero MCP 或其他集成，请参阅[集成能力](#集成能力)部分手动设置。
+**安装后**：插件安装**不会**自动加载 `CLAUDE.md` 或配置 `settings.json`；如果你已经有自己的 `~/.claude/CLAUDE.md` 或 `~/.claude/CLAUDE.zh-CN.md`，也请把仓库提供的相关内容按需合并到你的文件里，而不是假设插件会自动应用。如需 Zotero MCP 或其他集成，请参阅[集成能力](#集成能力)部分手动设置。
 
 ## 上手场景
 
@@ -263,13 +276,13 @@ cp /tmp/claude-scholar/rules/*.md .claude/rules/
 **典型输出包括：**
 - 结构化的段落草稿，
 - 更清楚的论证链条，
-- claims 与 evidence 的对应关系，
+- 论断与证据的对应关系，
 - 还需要补验证或补材料的点。
 
 ### 使用建议
 - 先从一个具体任务开始，而不是一上来让系统”把所有事情都做了”。
-- 如果你已经有自己的本地 `CLAUDE.md` 文件，请把你需要的 Claude Scholar 内容按需 merge 进去，不要假设 sidecar 文件会自动生效。
-- Zotero 和 Obsidian 都不是强制的，但如果你希望得到 durable literature notes 或 project memory，而不是一次性聊天输出，它们会非常有帮助。
+- 如果你已经有自己的本地 `CLAUDE.md` 文件，请把你需要的 Claude Scholar 内容按需合并进去，不要假设旁路文件会自动生效。
+- Zotero 和 Obsidian 都不是强制的，但如果你希望得到可长期复用的文献笔记或项目记忆，而不是一次性聊天输出，它们会非常有帮助。
 
 ## 平台支持
 
@@ -304,6 +317,15 @@ Claude Scholar 目前面向以下 CLI 工作流：
 
 详见 [OBSIDIAN_SETUP.zh-CN.md](./OBSIDIAN_SETUP.zh-CN.md)。
 
+### Xquik（可选）
+
+当 `/promote` 需要检索有边界的公开 X 内容、分析帖子草稿，或通过已确认的连接账号发布时，
+可以使用 Xquik。Claude Scholar 不会把检索到的帖子直接当作学术证据；每次写入前都必须
+展示完整预览，并获得用户对该次载荷的明确确认。
+
+客户端设置见 [MCP_SETUP.zh-CN.md](./MCP_SETUP.zh-CN.md)，推广工作流见
+[`xquik-promotion.md`](./skills/post-acceptance/references/xquik-promotion.md)。
+
 ## 主要工作流
 
 完整学术研究生命周期 —— 从研究构思到发表的 7 个阶段。
@@ -316,7 +338,7 @@ Claude Scholar 目前面向以下 CLI 工作流：
 |---|---|---|
 | Skill | `research-ideation` | 把模糊研究主题收敛成结构化问题、研究空白分析和初始研究计划。 |
 | Agent | `literature-reviewer` | 搜索、分类并综合论文，形成可执行的文献图景。 |
-| Command | `/research-init` | 从文献检索、Zotero 组织到研究提案草稿，一键启动新研究主题。 |
+| Command | `/research-init` | 从文献检索、Zotero 组织到研究问题卡片；只有通过证据门槛时才生成研究提案草稿。 |
 | Command | `/zotero-review` | 对已有 Zotero collection 做结构化文献综述与比较。 |
 | Command | `/zotero-notes` | 批量阅读 Zotero collection，并生成结构化论文阅读笔记。 |
 
@@ -324,13 +346,15 @@ Claude Scholar 目前面向以下 CLI 工作流：
 - **5W1H 头脑风暴**：把模糊主题收敛成结构化问题。
 - **文献检索与导入**：搜索论文、提取 DOI/arXiv/URL、导入 Zotero，并组织到主题文献集合。
 - **PDF 与全文**：能挂 PDF 就挂 PDF，能读全文就读全文，必要时回退到摘要分析。
-- **研究空白分析**：识别 literature / methodology / application / interdisciplinary / temporal 等不同类型的研究空白。
+- **研究空白分析**：识别文献型、方法型、应用型、跨学科型、时间型等不同类型的研究空白。
 - **研究问题与规划**：把文献综述进一步转成明确研究问题、初始假设和下一步计划。
+- **证据门槛**：在论断进入 `Knowledge`、`Writing` 或研究提案之前，保留弱来源、项目假设和缺失证据。
 
 **典型产出**
+- 带有假设、证据需求、证伪条件和下一步动作的研究问题卡片
 - 文献综述笔记
 - 结构化 Zotero 文献集合
-- 研究计划 / 方向草稿
+- 证据足够时生成研究提案；否则只生成研究方向或初步整理草稿
 
 ### 2. ML 项目开发
 
@@ -352,7 +376,7 @@ Claude Scholar 目前面向以下 CLI 工作流：
 - **结构设计**：在合适场景下使用 Factory / Registry 模式组织 ML 组件。
 - **代码质量**：保持文件规模、类型提示与配置驱动设计。
 - **问题排查**：系统化处理 stack trace、shell 报错和代码路径问题。
-- **Git 纪律**：维持分支策略、commit 规范和更安全的 merge/rebase 流程。
+- **Git 纪律**：维持分支策略、commit 规范和更安全的合并/rebase 流程。
 
 ### 3. 实验分析
 
@@ -362,13 +386,14 @@ Claude Scholar 目前面向以下 CLI 工作流：
 |---|---|---|
 | Skill | `results-analysis` | 生成由严格统计、真实科研图和分析附录组成的严格分析产物包。 |
 | Skill | `results-report` | 把分析产物组织成完整实验总结报告，明确结论、限制和下一步动作。 |
-| Command | `/analyze-results` | 一键执行完整实验后工作流：先严格分析，再生成最终实验报告。 |
+| Command | `/analyze-results` | 执行阻塞项优先的实验后工作流：先验证证据，能严格分析时再分析，证据包足够时才生成报告。 |
 
 **工作方式**
 - **数据处理**：读取实验日志、metrics 文件和结果目录。
+- **阻塞项优先门槛**：先锁定分析单位、主指标、seeds/folds/runs、来源追踪和比较族。
 - **统计检验**：在合适前提下执行 t-test / ANOVA / Wilcoxon 等严格统计检验。
 - **科研可视化**：生成真实科研图和解释线索，而不是只给模糊的绘图建议。
-- **消融与比较**：分析组件贡献、性能 tradeoff 和稳定性。
+- **消融与比较**：分析组件贡献、性能取舍和稳定性。
 - **实验后报告**：把分析产物包转成完整实验后总结报告，包含结论、限制和下一步动作。
 
 **典型产出**
@@ -377,6 +402,7 @@ Claude Scholar 目前面向以下 CLI 工作流：
 - `figure-catalog.md`
 - `figures/`
 - 写入 Obsidian `Results/Reports/` 的实验总结报告
+- 证据不足时生成阻塞项摘要或审计笔记
 
 ### 4. 论文写作
 
@@ -385,16 +411,28 @@ Claude Scholar 目前面向以下 CLI 工作流：
 | 类型 | 名字 | 一句话解释 |
 |---|---|---|
 | Skill | `ml-paper-writing` | 基于 repo、实验结果和文献上下文撰写投稿导向的 ML/AI 论文。 |
-| Skill | `citation-verification` | 检查参考文献、元数据和 claim-citation 对齐，避免引用错误。 |
+| Skill | [`nature-writing`](./skills/nature-writing/README.md) | 根据 claims、figures、results、notes 或中文草稿起草或重建 Nature 风格的论文章节。 |
+| Skill | [`nature-polishing`](./skills/nature-polishing/README.md) | 将稿件内容润色、重组或翻译为更接近 Nature 风格的精炼英文。 |
+| Skill | [`nature-response`](./skills/nature-response/README.md) | 为 Nature 系修回撰写、审查或重写逐点 reviewer response。 |
+| Skill | [`nature-data`](./skills/nature-data/README.md) | 准备 Nature 风格的 Data Availability、repository plan 和 FAIR 元数据检查。 |
+| Skill | `citation-verification` | 检查参考文献、元数据和论断-引用对齐，避免引用错误。 |
 | Skill | `writing-anti-ai` | 减少机械化表述，提升清晰度、节奏和更自然的学术语气。 |
 | Skill | `latex-conference-template-organizer` | 把混乱的会议模板整理成 Overleaf-ready 写作结构。 |
 | Agent | `paper-miner` | 从高质量论文中提炼可复用的写作模式、结构和投稿经验。 |
-| Command | `/mine-writing-patterns` | 读取论文并把可复用写作知识合并进全局 paper-miner writing memory。 |
+| Command | `/mine-writing-patterns` | 读取论文并把可复用写作知识合并进当前已安装的 paper-miner 写作记忆。 |
+
+蒸馏结果由 `ml-paper-writing`、Nature 写作与润色，以及审稿回复 Skill 共享。
+重复运行 `scripts/setup.sh` 会保留已写入的记忆，卸载时也不会删除。
+如果手动用 `cp -r` 更新 Skill，请先备份这份记忆。
 
 **工作方式**
 - **模板准备**：把会议模板清理成 Overleaf-ready 结构。
-- **引用核验**：检查参考文献、元数据和 claim-citation 对齐。
-- **系统化写作**：基于 repo、实验结果和文献上下文逐节写作。
+- **期刊风格润色**：在需要时加强段落逻辑、hedging 和 section moves，使表达更接近 Nature 风格。
+- **审稿回复**：把大修/小修意见组织成可审计的逐点 response package。
+- **数据可用性**：准备 Nature 风格的数据仓库方案、dataset citation 和 availability statement。
+- **引用核验**：检查参考文献、元数据和论断-引用对齐。
+- **系统化写作**：基于 repo、实验结果和文献上下文逐节写作，但未被证据支持的论断必须显式标记。
+- **论断台账**：贡献、结果和相关工作对比都应能追溯到证据；否则保留为推测性表述。
 - **风格打磨**：减少 AI 痕迹，改善节奏、清晰度和学术语气。
 
 ### 5. 论文自审
@@ -407,9 +445,10 @@ Claude Scholar 目前面向以下 CLI 工作流：
 
 **工作方式**
 - **结构检查**：检查逻辑流、章节平衡和叙事连贯性。
-- **逻辑校验**：检查 claim-evidence 对齐、假设清晰度和论证一致性。
+- **逻辑校验**：检查论断-证据对齐、假设清晰度和论证一致性。
+- **论断审计**：检查主要论断是否被证据支持，削弱过强表述，并在证据不足时保留不确定性。
 - **引用审计**：检查引用准确性与完整性。
-- **图表质量**：检查 caption 完整性、可读性和可访问性。
+- **图表质量**：检查图注/表注完整性、可读性和可访问性。
 - **合规性检查**：检查页数限制、格式和披露要求。
 
 ### 6. 投稿与 Rebuttal
@@ -419,14 +458,14 @@ Claude Scholar 目前面向以下 CLI 工作流：
 | 类型 | 名字 | 一句话解释 |
 |---|---|---|
 | Skill | `review-response` | 把审稿意见组织成基于证据的 rebuttal 工作流。 |
-| Agent | `rebuttal-writer` | 起草专业、礼貌且结构清晰的 rebuttal 文本。 |
-| Command | `/rebuttal` | 基于审稿意见和现有证据生成完整 rebuttal 草稿。 |
+| Agent | `rebuttal-writer` | 如果当前运行时可用，可作为起草专业、礼貌且结构清晰 rebuttal 的辅助 agent。 |
+| Command | `/rebuttal` | 基于审稿意见和现有证据生成带证据锚点的 rebuttal 草稿，未解决项必须显式标出。 |
 
 **工作方式**
 - **投稿前检查**：检查会议/期刊格式、匿名化和清单要求。
 - **审稿意见分析**：把审稿意见分类成可执行的问题。
-- **回复策略**：决定是 accept、defend、clarify 还是补实验。
-- **Rebuttal 写作**：生成结构化、基于证据、语气专业的回复文档。
+- **回复策略**：决定是接受、反驳、澄清还是补实验。
+- **Rebuttal 写作**：生成结构化、基于证据、语气专业的回复文档，并保留证据锚点与未解决项。
 
 ### 7. 录用后处理
 
@@ -437,12 +476,12 @@ Claude Scholar 目前面向以下 CLI 工作流：
 | Skill | `post-acceptance` | 支持论文录用后的报告、海报和传播材料准备。 |
 | Command | `/presentation` | 生成会议报告的结构和讲解指导。 |
 | Command | `/poster` | 整理论文内容并生成海报版式与内容指导。 |
-| Command | `/promote` | 起草面向外部传播的摘要、帖子或 thread 内容。 |
+| Command | `/promote` | 起草面向外部传播的摘要、帖子或长帖内容。 |
 
 **工作方式**
 - **报告准备**：准备报告结构和演示文稿指导。
 - **海报整理**：整理海报内容层级和版式。
-- **传播内容**：生成社交媒体、博客或简明研究摘要。
+- **传播内容**：核验声明，按平台起草内容，并可选用 Xquik 做有边界的 X 检索或经确认的发布。
 
 ## 支撑工作流
 
@@ -454,32 +493,31 @@ Claude Scholar 目前面向以下 CLI 工作流：
 
 | 类型 | 名字 | 一句话解释 |
 |---|---|---|
-| Skill | `obsidian-project-kb-core` | 负责项目级 KB 的初始化、路由、registry、index、daily 和 lifecycle。 |
+| Skill | `obsidian-project-kb-core` | 负责项目级 KB 的初始化、路由、注册表、索引、每日记录和生命周期。 |
 | Skill | `obsidian-source-ingestion` | 把外部材料写入 `Sources/Papers`、`Sources/Web`、`Sources/Docs`、`Sources/Data`、`Sources/Interviews` 或 `Sources/Notes`。 |
 | Skill | `obsidian-literature-workflow` | 管理从 `Sources/Papers` 到 `Knowledge`、`Writing`、`Maps/literature.canvas` 的文献工作流。 |
-| Skill | `obsidian-kb-artifacts` | 处理 wikilink、registry 表格、canvas、可选 `.base` 和 link repair 等 Obsidian 原生产物。 |
-| Command | `/kb-init` | 在 `Research/{project-slug}/` 下初始化 vault-first KB。 |
+| Skill | `obsidian-kb-artifacts` | 处理 wikilink、注册表表格、canvas、可选 `.base` 和链接修复等 Obsidian 原生产物。 |
+| Command | `/kb-init` | 在 `Research/{project-slug}/` 下初始化以 vault 为中心的 KB。 |
 | Command | `/kb-status` | 汇总当前已绑定项目 KB 的状态。 |
-| Command | `/kb-ingest` | 将新的 source material 路由到正确的 canonical 位置。 |
+| Command | `/kb-ingest` | 将新的来源材料路由到正确的规范位置。 |
 | Command | `/kb-log` | 保守更新当天 `Daily/` 和相关项目表面。 |
-| Command | `/kb-sync` | 运行确定性的 KB 维护，刷新 registry、index、daily 和运行时绑定状态。 |
-| Command | `/kb-links` | 修复或增强 canonical KB notes 之间的 wikilink。 |
-| Command | `/kb-promote` | 将 Daily 或 source note 中稳定的内容提升为 canonical note。 |
+| Command | `/kb-sync` | 运行确定性的 KB 维护，刷新注册表、索引、每日记录和运行时绑定状态。 |
+| Command | `/kb-links` | 修复或增强规范 KB 笔记之间的 wikilink。 |
+| Command | `/kb-promote` | 将 Daily 或来源笔记中稳定的内容提升为规范笔记。 |
 | Command | `/kb-index` | 重建 `02-Index.md` 这个人类导航页。 |
 | Command | `/kb-lint` | 运行确定性的 KB 健康检查并更新 `_system/lint-report.md`。 |
-| Command | `/kb-archive` | 归档、detach、purge 或重命名 KB 对象，并保持链接与 registry 一致。 |
-| Command | `/kb-map` | 在默认 literature canvas 之外，按需生成或修复显式请求的 KB artifact。 |
-| Command | `/kb-literature-review` | 从 `Sources/Papers` 生成文献综合，并写入 `Knowledge`、`Writing` 和 `Maps/literature.canvas`。 |
-
-旧的 `/obsidian-*` 命令会在一个过渡窗口内保留为 deprecated alias。它们只转发到 `/kb-*`，不会恢复旧目录语义。
+| Command | `/kb-archive` | 归档、分离、清除或重命名 KB 对象，并保持链接与注册表一致。 |
+| Command | `/kb-map` | 在默认 literature canvas 之外，按需生成或修复显式请求的 KB 产物。 |
+| Command | `/kb-literature-review` | 从 `Sources/Papers` 生成经过证据门槛的文献综合，并写入 `Knowledge`、可选 `Writing` 和 `Maps/literature.canvas`。 |
 
 **工作方式**
 - 将已有 repo 绑定到 Obsidian vault
 - 把稳定知识路由进 `Sources / Knowledge / Experiments / Results / Results/Reports / Writing / Daily / Maps`
-- 以保守方式维护 `Daily/` 和 repo-local binding metadata
-- 把新的 source material 路由进正确的 canonical note
+- 以保守方式维护 `Daily/` 和仓库本地绑定元数据
+- 把新的来源材料路由进正确的规范笔记
+- 防止只有摘要或网页占位来源支撑稳定论断
 - 只有在显式请求时才生成额外的 `.base` 或 canvas
-- 用 `/kb-sync` 做确定性重同步，用 `/kb-links` 做独立的 link repair
+- 用 `/kb-sync` 做确定性重同步，用 `/kb-links` 做独立的链接修复
 
 **笔记语言配置**
 
@@ -518,10 +556,27 @@ Claude Scholar 目前面向以下 CLI 工作流：
 - `security-guard.js`
 
 **工作方式**
-- **用户提问前**：评估当前 prompt 应该触发哪些 skills，并补充相关 workflow 提示。
+- **用户提问前**：评估当前 prompt 应该触发哪些 skills，并补充相关工作流提示。
 - **会话开始时**：显示 Git 状态、可用命令和项目记忆上下文。
 - **会话结束或停止时**：总结工作内容，并提醒最小维护动作。
 - **安全防护**：拦截灾难性命令，并对危险但合理的操作要求确认。
+
+### 表达与汇报约束层
+
+当任务需要结论先行汇报、具体证据、可见风险或紧凑下一步时，使用可复用的沟通表达层。
+
+| 类型 | 名字 | 一句话解释 |
+|---|---|---|
+| Skill | [`expression-skill`](./skills/expression-skill/README.md) | 为技术工作、写作、文档、文件操作和多步骤任务提供结论先行、具体、可核查的表达约束。 |
+| Skill | [`planning-with-files`](./skills/planning-with-files/SKILL.md) | 让复杂任务把计划、进度与中间发现落到 `task_plan.md`、`notes.md` 和交付文件里，而不是只依赖瞬时对话上下文。 |
+
+**工作方式**
+- 先给结论，不先叙述过程，
+- 优先使用命令、路径、数量、检查结果和可观察行为，而不是抽象过程词，
+- 只有在歧义会改变结果时才追问，
+- 尽早暴露风险、不确定性和破坏性边界，
+- 对长任务持续给出 step / checkpoint 形式的可见路标，
+- 对多步骤任务用 `task_plan.md` 和 `notes.md` 做持久化规划，而不是只依赖瞬时上下文。
 
 ### 知识提炼工作流
 
@@ -608,6 +663,8 @@ MIT 许可证。
 
 - **[everything-claude-code](https://github.com/anthropics/everything-claude-code)** - Claude Code CLI 的综合资源
 - **[AI-research-SKILLs](https://github.com/zechenzhangAGI/AI-research-SKILLs)** - 研究导向的技能和配置
+- **[expression-skill](https://github.com/Galaxy-Dawn/expression-skill)** - 这里复用了其公开的结论先行表达 skill，用于汇报和回应约束
+- **[nature-skills](https://github.com/Yuan1z0825/nature-skills)** - 这里统一复用了其 Nature 风格的章节起草、学术润色、审稿回复和数据可用性 skills，并保留来源引用
 
 这些项目为 Claude Scholar 的研究导向功能提供了宝贵的见解和基础。
 
